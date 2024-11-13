@@ -151,10 +151,9 @@ def getMSE_balance(Y_Pre, Y):
     #Y为 true label
 
     interval = 20
-    item = 10 #循环次数
+    item = 10 
     min_day = 5
 
-    #######################根据真实数据，挑选预测数据，得到平衡的数据##################################
     Y_Pre_pd = pd.DataFrame(Y_Pre)
     Y_pd = pd.DataFrame(Y)
     slope_Ava = 0; slope_std = 0; slope_list = []
@@ -163,7 +162,7 @@ def getMSE_balance(Y_Pre, Y):
     for j in range(item):
         # 计算最大值和最小值
         min_value = np.min(Y) - 0.001
-        max_value = np.max(Y) + 0.001  # 使得最大最小值能被包含进去
+        max_value = np.max(Y) + 0.001  
         interval_width = (max_value - min_value) / interval
         # 定义区间
         intervals = [(min_value + i * interval_width, min_value + (i + 1) * interval_width) for i in range(interval)]
@@ -202,7 +201,6 @@ def getMSE_balance(Y_Pre, Y):
             Y_Pre_list.append(np.array(new_Y_Pre))
         Y_balance = np.array(y_list).flatten()
         y_pre_balance = np.array(Y_Pre_list).flatten()
-        ######################计算平衡数据状态下各项指标##############################
         slope_B, RMSE_B = getSLOPERMSER(Y_balance, y_pre_balance)
         slope_list.append(slope_B)
         RMSE_list.append(RMSE_B)
