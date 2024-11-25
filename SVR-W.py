@@ -58,8 +58,8 @@ def Compare_bestPara(X_train_Standard, X_test_Standard, y_train_Standard, y_trai
                         weightList = GetWeight2(y_train[train_index], t)
 
                         svr_model.fit(X_train_fold, y_train_fold, sample_weight=weightList)
-                        y_pre_fold = svr_model.predict(X_train_fold)
-                        mse = mean_squared_error(y_train_fold, y_pre_fold)
+                        y_pre_fold = svr_model.predict(X_test_fold)
+                        mse = mean_squared_error(y_test_fold, y_pre_fold)
                         fold_scores.append(mse)
 
                     avg_rmse = np.mean(fold_scores)
